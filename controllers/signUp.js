@@ -4,6 +4,14 @@ import { User } from "../models/userModel.js";
 const signUp = async (req, res) => {
     try {
         const { userName, userPassword } = req.body;
+        const userCheck = await User.findOneAndDelete({userName});
+
+        if (userCheck) {
+            return res.status(404).json({
+                message: 'UserName already used',
+                success: false,
+            });
+        }
 
         const hashedPassword = await bcrypt.hash(userPassword, 10);
 
