@@ -5,6 +5,7 @@ import createClass from '../controllers/createClass.js';
 import announcement from '../controllers/announcement.js';
 import getClassStudents from '../controllers/getClassStudents.js';
 import getClassTeachers from '../controllers/getClassTeachers.js';
+import getNameById from '../controllers/getNameById.js';
 const router = express.Router();
 
 router
@@ -14,5 +15,6 @@ router
     .post('/announcement', announcement)
     .get('/getClassStudents/:classId', getClassStudents)
     .get('/getClassTeachers/:classId', getClassTeachers)
+    .get('/getName/:userId', getNameById)
 
     export {router};
