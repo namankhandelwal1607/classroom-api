@@ -1,6 +1,6 @@
 import { Announcement } from "../models/announcementModel.js";
 import { User } from "../models/userModel.js";
-import { Class } from '../models/classModel.js';
+import { Class } from "../models/classModel.js";
 
 const announcement = async (req, res) => {
     try {
@@ -23,20 +23,22 @@ const announcement = async (req, res) => {
             });
         }
 
-        // Create a new announcement
         const newAnnouncement = new Announcement({
-            className: classn._id, // Use the class's ObjectId
-            userName: user._id,     // Use the user's ObjectId
+            className: classn._id,
+            userName: user._id,
             announcement
         });
 
-        // Save the announcement to the database
-        await newAnnouncement.save();
+        const savedAnnouncement = await newAnnouncement.save();
+
+        // Push the announcement ID to the classAnnouncement array in the Class model
+        classn.classAnnouncement.push(savedAnnouncement._id);
+        await classn.save();
 
         return res.status(201).json({
             message: 'Announcement created successfully',
             success: true,
-            data: newAnnouncement
+            data: savedAnnouncement
         });
     } catch (err) {
         return res.status(500).json({
