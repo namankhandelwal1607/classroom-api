@@ -22,6 +22,13 @@ const createClass = async (req, res) => {
 
             await existingClass.save();
 
+            await Promise.all(newStudentIds.map(async (studentId) => {
+                await User.findByIdAndUpdate(studentId, { $addToSet: { classStudent: existingClass._id } });
+            }));
+            await Promise.all(newTeacherIds.map(async (teacherId) => {
+                await User.findByIdAndUpdate(teacherId, { $addToSet: { classTeacher: existingClass._id } });
+            }));
+
             return res.status(200).json({
                 message: 'Class updated successfully',
                 success: true,
@@ -36,6 +43,13 @@ const createClass = async (req, res) => {
             });
 
             const savedClass = await newClass.save();
+
+            await Promise.all(studentIds.map(async (studentId) => {
+                await User.findByIdAndUpdate(studentId, { $addToSet: { classStudent: savedClass._id } });
+            }));
+            await Promise.all(teacherIds.map(async (teacherId) => {
+                await User.findByIdAndUpdate(teacherId, { $addToSet: { classTeacher: savedClass._id } });
+            }));
 
             return res.status(201).json({
                 message: 'Class created successfully',
@@ -52,4 +66,3 @@ const createClass = async (req, res) => {
 };
 
 export default createClass;
-    
