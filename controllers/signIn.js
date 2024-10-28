@@ -27,6 +27,7 @@ const signIn = async (req, res) => {
             success: true,
             userData: {
                 userName: user.userName,
+                _id: user._id,
             }
         });
 
