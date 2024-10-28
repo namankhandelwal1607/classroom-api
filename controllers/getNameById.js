@@ -2,7 +2,7 @@ import { User } from "../models/userModel.js";
 
 const getNameById = async(req, res)=>{
     try{
-        const userId = req.params.userId;
+        const userId = await req.params.userId;
         console.log(userId);
 
         const reqUser = await User.findOne({_id: userId});
