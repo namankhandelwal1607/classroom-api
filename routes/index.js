@@ -7,6 +7,7 @@ import getClassStudents from '../controllers/getClassStudents.js';
 import getClassTeachers from '../controllers/getClassTeachers.js';
 import getNameById from '../controllers/getNameById.js';
 import getClassesEnrolled from '../controllers/getClassesEnrolled.js';
+import getClassDetails from '../controllers/getClassDetails.js';
 const router = express.Router();
 
 router
@@ -18,4 +19,5 @@ router
     .get('/getClassTeachers/:classId', getClassTeachers)
     .get('/getName/:userId', getNameById)
     .get('/getClassesEnrolled/:studentId', getClassesEnrolled)
+    .get('/getClassDetails/:classId', getClassDetails)
     export {router};
