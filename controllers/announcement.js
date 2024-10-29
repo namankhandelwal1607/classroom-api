@@ -6,8 +6,8 @@ const announcement = async (req, res) => {
     try {
         const { className, userName, announcement } = req.body;
 
-        const user = await User.findOne({ userName });
-        const classn = await Class.findOne({ className });
+        const user = await User.findOne({ _id: userName });
+        const classn = await Class.findOne({ _id: className });
 
         if (!user) {
             return res.status(404).json({
@@ -24,14 +24,13 @@ const announcement = async (req, res) => {
         }
 
         const newAnnouncement = new Announcement({
-            className: classn._id,
-            userName: user._id,
+            className,
+            userName,
             announcement
         });
 
         const savedAnnouncement = await newAnnouncement.save();
 
-        // Push the announcement ID to the classAnnouncement array in the Class model
         classn.classAnnouncement.push(savedAnnouncement._id);
         await classn.save();
 
