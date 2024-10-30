@@ -13,6 +13,7 @@ import getClassTaught from '../controllers/getClassTaught.js';
 import verification from '../controllers/verification.js';
 import addStudentInClass from '../controllers/addStudentInClass.js';
 import addTeacherInClass from '../controllers/addTeacherInClass.js';
+import autoTeacher from '../controllers/autoTeacher.js';
 const router = express.Router();
 
 router
@@ -30,5 +31,6 @@ router
     .post('/verification', verification)
     .post('/addStudentInClass', addStudentInClass)
     .post('/addTeacherInClass', addTeacherInClass)
+    .post('/autoTeacher', autoTeacher)
 
     export {router};
