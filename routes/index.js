@@ -11,6 +11,8 @@ import getClassDetails from '../controllers/getClassDetails.js';
 import getAnnouncementByClass from '../controllers/getAnnouncementByClass.js';
 import getClassTaught from '../controllers/getClassTaught.js';
 import verification from '../controllers/verification.js';
+import addStudentInClass from '../controllers/addStudentInClass.js';
+import addTeacherInClass from '../controllers/addTeacherInClass.js';
 const router = express.Router();
 
 router
@@ -26,5 +28,7 @@ router
     .get('/getAnnouncementByClass/:classId', getAnnouncementByClass)
     .get('/getClassTaught/:studentId', getClassTaught)
     .post('/verification', verification)
+    .post('/addStudentInClass', addStudentInClass)
+    .post('/addTeacherInClass', addTeacherInClass)
 
     export {router};
