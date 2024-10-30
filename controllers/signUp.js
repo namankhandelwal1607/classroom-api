@@ -30,7 +30,7 @@ const signUp = async (req, res) => {
             `${process.env.JWT_SECRET}`,
             { expiresIn: '1h' }
         );
-
+        console.log("JWT created", token);
         const subject ="Email verification for ClassConnect";
         const text = `Hey! Welcome to ClassConnect. To verify yourself, click on the link provided in the email and then click "Verify User". This will allow you to access the dashboard without login for the first time only! ${process.env.FRONTEND_URL}/verifyuser/${token}`
         await sendMail(userSave.userName, subject, text);
