@@ -2,18 +2,18 @@ import { Class } from '../models/classModel.js';
 import { User } from '../models/userModel.js';
 
 const addTeacherInClass = async (req, res) => {
-    const { classId, userId } = req.body;
+    const { classId, userName } = req.body;
 
     try {
         const cl = await Class.findOne({ _id: classId });
-        const us = await User.findOne({ _id: userId });
+        const us = await User.findOne({userName: userName });
 
         if (cl && us) {
-            const isTeacherInClass = cl.classTeachers.includes(userId);
+            const isTeacherInClass = cl.classTeachers.includes(us._id);
             const isClassInUser = us.classTeacher.includes(classId);
 
             if (!isTeacherInClass) {
-                cl.classTeachers.push(userId);
+                cl.classTeachers.push(us._id);
             }
 
             if (!isClassInUser) {
