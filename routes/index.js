@@ -10,6 +10,7 @@ import getClassesEnrolled from '../controllers/getClassesEnrolled.js';
 import getClassDetails from '../controllers/getClassDetails.js';
 import getAnnouncementByClass from '../controllers/getAnnouncementByClass.js';
 import getClassTaught from '../controllers/getClassTaught.js';
+import verification from '../controllers/verification.js';
 const router = express.Router();
 
 router
@@ -24,5 +25,6 @@ router
     .get('/getClassDetails/:classId', getClassDetails)
     .get('/getAnnouncementByClass/:classId', getAnnouncementByClass)
     .get('/getClassTaught/:studentId', getClassTaught)
+    .post('/verification', verification)
 
     export {router};
