@@ -13,6 +13,15 @@ const signIn = async (req, res) => {
                 success: false,
             });
         }
+
+        if (user.isVerified == false) {
+            return res.status(404).json({
+                message: 'User not verified',
+                success: false,
+            });
+        }
+
+
         const isPasswordValid = await bcrypt.compare(userPassword, user.userPassword);
 
         if (!isPasswordValid) {
